@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: Arial, sans-serif;
+  --font-display: Arial, sans-serif;
+  --color-forest: #173f3a;
+  --color-sage: #dce9dc;
+  --color-mint: #bdd9c7;
+  --color-coral: #c7654b;
+  --color-paper: #f8f6f0;
+}
+
+:root { font-family: Arial, sans-serif; color: #173f3a; background: #f8f6f0; font-synthesis: none; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+.font-display { font-family: Arial, sans-serif; }
+.field { width: 100%; border: 1px solid rgba(23, 63, 58, 0.18); border-radius: 0.65rem; background: rgba(255,255,255,0.42); padding: 0.85rem 1rem; color: #173f3a; outline: none; transition: border-color 150ms, box-shadow 150ms, background 150ms; }
+.field::placeholder { color: rgba(23, 63, 58, 0.38); }
+.field:focus { border-color: #c7654b; background: #fff; box-shadow: 0 0 0 3px rgba(199, 101, 75, 0.12); }
+.button-primary, .button-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; border-radius: 0.65rem; padding: 0.85rem 1.1rem; font-size: 0.875rem; font-weight: 700; transition: transform 150ms, background 150ms; }
+.button-primary { background: #173f3a; color: white; }
+.button-primary:hover { background: #24584f; transform: translateY(-1px); }
+.button-secondary { border: 1px solid rgba(23, 63, 58, 0.16); color: #173f3a; }
+.button-secondary:hover { background: #bdd9c7; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.animate-rise { animation: rise 600ms ease-out both; }
