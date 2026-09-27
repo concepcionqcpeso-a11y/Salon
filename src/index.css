@@ -51,90 +51,162 @@ input:focus-visible {
 
 .login-screen {
   min-height: 100vh;
+  min-height: 100svh;
   display: grid;
   place-items: center;
-  padding: 32px 20px;
-  background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 52%, var(--gold) 180%);
+  padding: 28px 18px;
+  background: #f2f3f4;
 }
 
 .login-card {
   width: min(100%, 460px);
-  padding: 42px;
-  border-radius: 24px;
-  background: var(--surface);
-  color: #242424;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  border: 1px solid rgba(20, 20, 20, 0.22);
+  border-radius: 14px;
+  background: var(--charcoal);
+  color: #f7f7f7;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.09);
 }
 
-.login-brand {
+.login-card-heading {
+  min-height: 174px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 26px;
+  padding: 24px 38px 22px;
+  background: var(--gold);
+  color: #fff;
+  text-align: center;
 }
 
-.login-kicker,
+.login-card-heading h1 {
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.12;
+}
+
+.login-card-heading p {
+  max-width: 370px;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.login-photo {
+  display: block;
+  width: 100%;
+  height: 194px;
+  object-fit: cover;
+  object-position: center 42%;
+  background: #d7d4cb;
+}
+
+.login-form {
+  display: grid;
+  gap: 12px;
+  padding: 30px 42px 26px;
+  background: var(--charcoal);
+}
+
+.login-form label {
+  position: relative;
+  display: block;
+}
+
+.login-form label span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.login-form input {
+  width: 100%;
+  height: 64px;
+  border: 1px solid rgba(20, 20, 20, 0.18);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: var(--gold);
+  color: #202020;
+  outline: none;
+}
+
+.login-form input::placeholder {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.login-role-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 3px;
+  border: 1px solid rgba(217, 180, 55, 0.55);
+  border-radius: 9px;
+}
+
+.login-role-picker button {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.login-role-picker button.selected {
+  background: var(--gold);
+  color: #202020;
+}
+
+.forgot-password {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 13px;
+  text-align: left;
+}
+
+.login-button {
+  border: 0;
+  width: min(100%, 256px);
+  min-height: 44px;
+  justify-self: center;
+  margin-top: 9px;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.login-button:hover,
+.login-role-picker button.selected:hover {
+  background: var(--gold-dark);
+}
+
+.login-error {
+  color: #ffc7b7;
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .detail-kicker {
   color: var(--gold-dark);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-
-.login-card h1 {
-  margin-top: 10px;
-  font-size: clamp(2.3rem, 5vw, 3.5rem);
-  letter-spacing: -0.06em;
-}
-
-.login-copy {
-  margin-top: 12px;
-  color: rgba(22, 22, 22, 0.68);
-  line-height: 1.6;
-}
-
-.login-form {
-  display: grid;
-  gap: 16px;
-  margin-top: 28px;
-}
-
-.login-form label {
-  display: grid;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.login-form input {
-  width: 100%;
-  border: 1px solid rgba(25, 25, 25, 0.15);
-  border-radius: 10px;
-  padding: 13px 14px;
-  background: white;
-  outline: none;
-}
-
-.login-button {
-  border: 0;
-  border-radius: 10px;
-  padding: 14px;
-  background: var(--gold);
-  color: #1d1d1d;
-  font-weight: 800;
-}
-
-.login-error {
-  color: #a34231;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.login-hint {
-  margin-top: 20px;
-  color: rgba(22, 22, 22, 0.5);
-  font-size: 12px;
-  text-align: center;
 }
 
 .admin-app-shell {
@@ -286,15 +358,20 @@ input:focus-visible {
 .title-wrap h1,
 .top-header h1 {
   margin: 0;
-  font-size: clamp(2.2rem, 2vw + 1.2rem, 3.7rem);
-  font-weight: 700;
+  font-size: 27px;
+  font-weight: 750;
   letter-spacing: -0.05em;
+}
+
+.title-only-header h1 {
+  font-size: 34px;
+  font-weight: 650;
 }
 
 .title-wrap p,
 .top-header p {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 13px;
   color: rgba(255, 255, 255, 0.72);
 }
 
@@ -324,7 +401,7 @@ input:focus-visible {
   border: 0;
   background: transparent;
   width: 100%;
-  font-size: 16px;
+  font-size: 12px;
   color: #1d1d1d;
   outline: none;
 }
@@ -350,7 +427,7 @@ input:focus-visible {
   width: min(100%, 430px);
 }
 
-.content-panel > *:not(.top-header):not(.status-banner):not(.search-box) {
+.content-panel > *:not(.top-header):not(.status-banner):not(.search-box):not(.staff-page) {
   padding: 0 32px 32px;
 }
 
@@ -405,20 +482,20 @@ input:focus-visible {
 }
 
 .stat-text h3 {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: 500;
   line-height: 1.3;
   color: #202020;
 }
 
 .stat-main-line {
-  margin-top: 16px;
-  margin-bottom: 6px;
+  margin-top: 12px;
+  margin-bottom: 5px;
 }
 
 .stat-card .value {
-  font-size: clamp(2.1rem, 1.4vw + 1.5rem, 3rem);
-  font-weight: 800;
+  font-size: 27px;
+  font-weight: 700;
   letter-spacing: -0.05em;
   color: #1a1a1a;
 }
@@ -472,14 +549,14 @@ input:focus-visible {
 
 .panel-header h2,
 .revenue-panel h2 {
-  font-size: clamp(2.2rem, 1vw + 1.8rem, 3rem);
-  letter-spacing: -0.05em;
+  font-size: 24px;
+  letter-spacing: 0;
   color: #1a1a1a;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .sort {
-  font-size: 15px;
+  font-size: 14px;
   color: rgba(22, 22, 22, 0.72);
   display: flex;
   align-items: center;
@@ -487,7 +564,7 @@ input:focus-visible {
 }
 
 .sort span {
-  font-weight: 700;
+  font-weight: 600;
   color: #202020;
 }
 
@@ -509,9 +586,8 @@ input:focus-visible {
 
 .table-panel th {
   font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 .table-panel tbody tr {
@@ -525,18 +601,18 @@ input:focus-visible {
 }
 
 .customer-name {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .customer-service {
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(22, 22, 22, 0.66);
 }
 
 .date-cell,
 .amount-cell {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(20, 20, 20, 0.72);
 }
 
@@ -558,8 +634,8 @@ input:focus-visible {
   width: 72px;
   height: 28px;
   border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   color: #1c1c1c;
   background: rgba(214, 179, 74, 0.28);
 }
@@ -574,7 +650,7 @@ input:focus-visible {
   border: 0;
   background: transparent;
   color: var(--gold-dark);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
 }
 
@@ -670,9 +746,9 @@ input:focus-visible {
 
 .section-block h2 {
   margin: 0 0 18px;
-  font-size: clamp(2.2rem, 1.1vw + 1.7rem, 3rem);
-  letter-spacing: -0.05em;
-  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: 0;
+  font-weight: 600;
 }
 
 .master-grid {
@@ -732,8 +808,9 @@ input:focus-visible {
 }
 
 .config-copy h3 {
-  font-size: clamp(1.6rem, 1vw + 1rem, 2.4rem);
-  letter-spacing: -0.05em;
+  font-size: 24px;
+  letter-spacing: 0;
+  font-weight: 600;
   margin-bottom: 8px;
 }
 
@@ -807,8 +884,9 @@ input:focus-visible {
 .setting-copy h3,
 .report-copy h3,
 .overview-copy h3 {
-  font-size: clamp(1.8rem, 1vw + 1.2rem, 3rem);
-  letter-spacing: -0.06em;
+  font-size: 24px;
+  letter-spacing: 0;
+  font-weight: 600;
   margin-bottom: 8px;
 }
 
@@ -837,10 +915,6 @@ input:focus-visible {
   flex: 1;
 }
 
-.report-item .report-copy h3 {
-  font-size: clamp(2rem, 1.1vw + 1.5rem, 3rem);
-}
-
 .report-item .report-copy p {
   font-size: 15px;
 }
@@ -853,6 +927,84 @@ input:focus-visible {
   margin: 0 32px 24px;
   color: rgba(20, 20, 20, 0.62);
   font-size: 14px;
+}
+
+.staff-header {
+  background: var(--gold);
+  color: #242424;
+}
+
+.staff-header p {
+  color: rgba(23, 23, 23, 0.74);
+}
+
+.content-panel > .staff-schedule {
+  margin: 28px 32px;
+  padding: 28px 30px 32px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.staff-schedule-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.staff-schedule-heading h2 {
+  margin-top: 7px;
+  font-size: 28px;
+}
+
+.staff-shift {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #555;
+  font-size: 14px;
+}
+
+.staff-shift span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #5a9b68;
+}
+
+.staff-appointment-list {
+  border-top: 1px solid var(--line);
+}
+
+.staff-appointment {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  min-height: 78px;
+  border-bottom: 1px solid var(--line);
+}
+
+.staff-appointment time {
+  font-weight: 700;
+}
+
+.staff-appointment-copy h3 {
+  font-size: 16px;
+}
+
+.staff-appointment-copy p {
+  margin-top: 5px;
+  color: var(--muted-ink);
+  font-size: 14px;
+}
+
+.staff-appointment-status {
+  color: var(--gold-dark);
+  font-size: 13px;
+  font-weight: 700;
 }
 
 @media (max-width: 1100px) {
@@ -895,7 +1047,7 @@ input:focus-visible {
     margin-top: 16px;
   }
 
-  .content-panel > *:not(.top-header):not(.status-banner):not(.search-box) {
+  .content-panel > *:not(.top-header):not(.status-banner):not(.search-box):not(.staff-page) {
     padding-left: 22px;
     padding-right: 22px;
   }
@@ -945,12 +1097,1115 @@ input:focus-visible {
     justify-content: start;
   }
 
-  .login-card {
-    padding: 30px 24px;
-  }
-
   .empty-state {
     margin-left: 22px;
     margin-right: 22px;
+  }
+
+  .login-card-heading {
+    min-height: 132px;
+    padding: 18px 20px;
+  }
+
+  .login-card-heading h1 {
+    font-size: 25px;
+  }
+
+  .login-photo {
+    height: 132px;
+  }
+
+  .login-form {
+    gap: 9px;
+    padding: 18px 22px 18px;
+  }
+
+  .login-form input {
+    height: 52px;
+  }
+
+  .login-role-picker button {
+    min-height: 34px;
+  }
+
+  .login-button {
+    min-height: 40px;
+    margin-top: 4px;
+  }
+
+  .content-panel > .staff-schedule {
+    margin: 22px;
+    padding: 24px 20px;
+  }
+
+  .staff-schedule-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .staff-appointment {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px 0;
+  }
+
+  .staff-appointment-status {
+    grid-column: 2;
+  }
+}
+
+@media (max-height: 720px) {
+  .login-screen {
+    align-items: start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .login-card-heading {
+    min-height: 118px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .login-photo {
+    height: 110px;
+  }
+
+  .login-form {
+    gap: 8px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .login-form input {
+    height: 46px;
+  }
+}
+
+.staff-app-shell {
+  min-height: 100vh;
+  background: var(--page);
+}
+
+.staff-app-shell > .sidebar {
+  flex: 0 0 236px;
+  width: 236px;
+  min-height: 100vh;
+  padding: 24px 0 18px;
+  border-right: 1px solid #373737;
+}
+
+.staff-app-shell .brand-box {
+  gap: 12px;
+  padding: 8px 42px 30px;
+  margin: 0 0 16px;
+}
+
+.staff-app-shell .brand-logo-circle {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-width: 2px;
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+
+.staff-app-shell .brand-name {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 20px;
+}
+
+.staff-app-shell .brand-id {
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.staff-app-shell .nav-list {
+  gap: 0;
+  margin-top: 0;
+}
+
+.staff-app-shell .nav-item {
+  min-height: 44px;
+  padding: 10px 44px;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.staff-app-shell .nav-icon {
+  width: 20px;
+  min-width: 20px;
+  color: #8b8d8f;
+}
+
+.staff-app-shell .nav-item.active .nav-icon {
+  color: #fff;
+}
+
+.staff-app-shell .sidebar-footer {
+  gap: 0;
+  padding: 22px 34px 0;
+  margin: auto 16px 28px;
+  border-top: 1px solid #3a3a3a;
+}
+
+.staff-app-shell .footer-item {
+  min-height: 42px;
+  padding: 8px 10px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.staff-app-shell .footer-item:first-child {
+  display: none;
+}
+
+.staff-app-shell > .content-panel {
+  min-width: 0;
+}
+
+.staff-page {
+  min-height: 100vh;
+  background: #f1f2f4;
+}
+
+.staff-top-header {
+  display: flex;
+  min-height: 152px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 24px 36px 20px 40px;
+  background: var(--gold);
+  color: #fff;
+}
+
+.staff-top-brand h1 {
+  font-size: 27px;
+  font-weight: 750;
+  line-height: 1.15;
+}
+
+.staff-top-brand p {
+  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 13px;
+}
+
+.staff-top-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.staff-date-time {
+  display: grid;
+  gap: 8px;
+  text-align: right;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.staff-top-header .search-box {
+  width: 288px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid rgba(23, 23, 23, 0.1);
+  background: #fff;
+}
+
+.staff-top-header .search-box > svg {
+  display: none;
+}
+
+.staff-top-header .search-box input {
+  font-size: 12px;
+}
+
+.staff-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 28px;
+  padding: 8px 24px 0;
+}
+
+.staff-metric-card {
+  position: relative;
+  display: flex;
+  min-height: 156px;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 22px;
+  background: #fff;
+}
+
+.staff-metric-card > svg {
+  flex: 0 0 auto;
+  color: var(--gold);
+  stroke-width: 1.8;
+}
+
+.staff-metric-card h2 {
+  font-size: 19px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.staff-metric-card strong {
+  display: block;
+  margin: 12px 0 5px;
+  font-size: 27px;
+}
+
+.staff-metric-card p {
+  color: #4c4c4c;
+  font-size: 14px;
+}
+
+.staff-progress {
+  position: absolute;
+  right: 14px;
+  bottom: 18px;
+  left: 34px;
+  height: 9px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #e8e8e8;
+}
+
+.staff-progress span {
+  display: block;
+  width: 68%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gold);
+}
+
+.staff-gold-text {
+  color: var(--gold-dark);
+}
+
+.staff-dashboard-panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 1fr);
+  gap: 12px;
+  padding: 16px 14px 28px 24px;
+}
+
+.staff-surface {
+  min-width: 0;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.staff-dashboard-appointments,
+.staff-completed-panel {
+  min-height: 382px;
+  padding: 18px 20px 16px;
+}
+
+.staff-panel-heading h2,
+.staff-completed-panel h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.staff-panel-heading p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  font-size: 14px;
+}
+
+.staff-text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.staff-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.staff-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.staff-table thead {
+  background: var(--gold);
+  color: #fff;
+}
+
+.staff-table thead th {
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.staff-table thead th:first-child {
+  border-radius: 9px 0 0 9px;
+}
+
+.staff-table thead th:last-child {
+  border-radius: 0 9px 9px 0;
+}
+
+.staff-table tbody td {
+  padding: 11px 12px;
+  border-bottom: 1px solid #ececec;
+  color: #333;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.staff-table tbody td strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.staff-table tbody td small {
+  display: block;
+  margin-top: 2px;
+  color: #999;
+  font-size: 11px;
+}
+
+.staff-compact-table thead th {
+  font-size: 13px;
+}
+
+.staff-compact-table tbody td {
+  padding: 9px 10px;
+}
+
+.staff-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.staff-show-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 12px auto 0;
+  border: 0;
+  background: transparent;
+  color: var(--gold-dark);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.staff-completed-panel h2 {
+  margin: 8px 0 22px;
+  text-align: center;
+}
+
+.staff-completed-panel .staff-table {
+  text-align: center;
+}
+
+.staff-title-bar {
+  display: flex;
+  min-height: 94px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 12px 30px;
+  padding: 16px 30px;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.staff-title-bar h1 {
+  font-size: 34px;
+  font-weight: 650;
+}
+
+.staff-title-bar .search-box {
+  width: min(320px, 45%);
+  height: 44px;
+  background: #ededed;
+}
+
+.staff-appointments-panel {
+  min-height: 390px;
+  margin: 12px 24px 30px;
+  padding: 16px 20px 18px;
+}
+
+.staff-appointments-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.staff-appointments-heading h2 {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.staff-tabs {
+  display: flex;
+  gap: 22px;
+  margin: 12px 0 2px 24px;
+}
+
+.staff-tabs button {
+  padding: 0 4px 4px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #454545;
+  font-size: 14px;
+}
+
+.staff-tabs button.active {
+  border-color: var(--gold);
+  color: #171717;
+}
+
+.staff-sort-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 28px 0 0;
+  font-size: 13px;
+}
+
+.staff-appointments-table-wrap {
+  padding: 0 0 1px;
+}
+
+.staff-appointments-table-wrap .staff-table {
+  min-width: 760px;
+}
+
+.staff-appointments-table-wrap .staff-table thead th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+}
+
+.staff-appointments-table-wrap .staff-table tbody td {
+  height: 64px;
+  padding: 8px 14px;
+}
+
+.staff-gold-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgba(20, 20, 20, 0.12);
+  border-radius: 999px;
+  background: var(--gold);
+  color: #fff;
+  font-weight: 700;
+}
+
+.staff-gold-button:hover {
+  background: var(--gold-dark);
+}
+
+.staff-view-button {
+  width: 104px;
+  min-height: 36px;
+}
+
+.staff-empty-cell {
+  height: 100px;
+  color: #818181 !important;
+  text-align: center;
+}
+
+.staff-payment-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.62fr) minmax(420px, 1fr);
+  gap: 24px;
+  padding: 0 18px 14px 24px;
+}
+
+.staff-payment-customer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.staff-payment-customer {
+  display: flex;
+  min-height: 92px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 24px;
+  border: 1px solid #e4e4e4;
+  border-radius: 22px;
+  background: #fff;
+  color: #1e1e1e;
+  text-align: left;
+}
+
+.staff-payment-customer.active {
+  border: 2px solid var(--gold);
+}
+
+.staff-payment-customer > span {
+  display: grid;
+  gap: 8px;
+}
+
+.staff-payment-customer strong {
+  font-size: 15px;
+}
+
+.staff-payment-customer small {
+  font-size: 14px;
+}
+
+.staff-payment-customer > svg {
+  flex: 0 0 auto;
+  color: #858585;
+  stroke-width: 1.4;
+}
+
+.staff-payment-customer:nth-child(2) > svg {
+  color: var(--gold);
+  fill: var(--gold);
+}
+
+.staff-payment-card {
+  min-height: 480px;
+  padding: 24px 30px 18px;
+  border: 1px solid #bfc0c2;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.staff-payment-customer-summary {
+  display: grid;
+  gap: 8px;
+  padding: 0 0 18px 14px;
+}
+
+.staff-payment-customer-summary strong {
+  font-size: 16px;
+}
+
+.staff-payment-customer-summary span {
+  font-size: 15px;
+}
+
+.staff-payment-line {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  border-top: 1px solid #e9e9e9;
+  font-size: 15px;
+}
+
+.staff-payment-total {
+  font-weight: 700;
+}
+
+.staff-payment-method-label {
+  margin: 8px 14px 16px;
+  font-size: 14px;
+}
+
+.staff-method-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin: 0 8%;
+}
+
+.staff-method-options button {
+  display: grid;
+  min-height: 72px;
+  place-items: center;
+  gap: 1px;
+  border: 2px solid #ededed;
+  border-radius: 12px;
+  background: #fff;
+  color: #202020;
+}
+
+.staff-method-options button.active {
+  border-color: var(--gold);
+}
+
+.staff-method-options svg {
+  stroke-width: 1.6;
+}
+
+.staff-cash-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px;
+  align-items: end;
+  gap: 18px;
+  margin: 16px 14px 0;
+}
+
+.staff-cash-row label {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.staff-cash-row input {
+  width: 100%;
+  height: 38px;
+  padding: 0 14px;
+  border: 2px solid #e9e9e9;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.staff-cash-row input:disabled {
+  color: #777;
+  background: #f7f7f7;
+}
+
+.staff-change {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.staff-change strong {
+  color: #a74e4e;
+}
+
+.staff-complete-payment {
+  width: 100%;
+  min-height: 38px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.staff-payment-message {
+  margin: 10px 14px -8px;
+  color: #a74e4e;
+  font-size: 12px;
+}
+
+.staff-payment-message.success {
+  color: #3b7850;
+}
+
+.staff-transactions-title {
+  margin-bottom: 12px;
+}
+
+.staff-transactions-title select,
+.staff-transaction-filters select {
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  background: #fff;
+  color: #282828;
+  font-weight: 600;
+}
+
+.staff-transaction-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: 0 30px 22px;
+}
+
+.staff-transaction-stats article {
+  display: flex;
+  min-height: 104px;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.staff-transaction-stats article > svg {
+  color: var(--gold-dark);
+  stroke-width: 1.7;
+}
+
+.staff-transaction-stats h2 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.staff-transaction-stats strong {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.staff-transactions-panel {
+  margin: 0 24px 24px;
+  padding: 26px 20px 24px;
+}
+
+.staff-transaction-filters {
+  display: grid;
+  grid-template-columns: 145px minmax(0, 1fr);
+  gap: 20px;
+  margin: 0 4px 22px;
+}
+
+.staff-transaction-filters .search-box {
+  width: 100%;
+  height: 42px;
+  border: 2px solid #a7a7a7;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.staff-transaction-filters select {
+  width: 100%;
+  height: 42px;
+  border-width: 2px;
+}
+
+.staff-transactions-panel .staff-table {
+  min-width: 730px;
+}
+
+.staff-transactions-panel .staff-table thead th {
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.staff-modal-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.staff-detail-modal {
+  position: relative;
+  width: min(100%, 440px);
+  padding: 32px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.2);
+}
+
+.staff-detail-modal h2 {
+  margin: 10px 0 20px;
+  font-size: 25px;
+}
+
+.staff-detail-modal dl {
+  display: grid;
+  gap: 14px;
+}
+
+.staff-detail-modal dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ececec;
+}
+
+.staff-detail-modal dt {
+  color: #777;
+}
+
+.staff-detail-modal dd {
+  text-align: right;
+}
+
+.staff-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #f2f2f2;
+  font-size: 24px;
+  line-height: 1;
+}
+
+@media (max-width: 1100px) {
+  .staff-app-shell {
+    flex-direction: column;
+  }
+
+  .staff-app-shell > .sidebar {
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 0;
+    padding: 10px 18px;
+    border-bottom: 1px solid #373737;
+  }
+
+  .staff-app-shell .brand-box {
+    padding: 4px 8px 10px;
+    margin: 0;
+  }
+
+  .staff-app-shell .nav-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .staff-app-shell .nav-item {
+    justify-content: center;
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  .staff-app-shell .sidebar-footer {
+    position: absolute;
+    top: 13px;
+    right: 22px;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  .staff-app-shell .footer-item {
+    min-height: 34px;
+  }
+
+  .staff-app-shell .footer-item:first-child {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .staff-app-shell > .sidebar {
+    padding: 10px 10px 8px;
+  }
+
+  .staff-app-shell .brand-box {
+    padding-bottom: 8px;
+  }
+
+  .staff-app-shell .nav-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .staff-app-shell .nav-item {
+    min-height: 40px;
+    justify-content: flex-start;
+    padding: 8px 12px;
+  }
+
+  .staff-app-shell .sidebar-footer {
+    top: 14px;
+    right: 10px;
+  }
+
+  .staff-app-shell .footer-item {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  .staff-top-header {
+    min-height: 142px;
+    align-items: flex-start;
+    padding: 22px 18px 16px;
+  }
+
+  .staff-top-brand h1 {
+    max-width: 210px;
+    font-size: 20px;
+  }
+
+  .staff-top-brand p {
+    max-width: 210px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .staff-top-tools {
+    gap: 10px;
+  }
+
+  .staff-date-time {
+    font-size: 10px;
+  }
+
+  .staff-top-header .search-box {
+    width: min(160px, 44vw);
+    height: 34px;
+    padding: 0 9px;
+  }
+
+  .staff-dashboard-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px 14px 0;
+  }
+
+  .staff-metric-card {
+    min-height: 130px;
+    padding: 18px 24px;
+  }
+
+  .staff-metric-card h2 {
+    font-size: 17px;
+    white-space: normal;
+  }
+
+  .staff-metric-card strong {
+    font-size: 24px;
+  }
+
+  .staff-dashboard-panels {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .staff-dashboard-appointments,
+  .staff-completed-panel {
+    min-height: 0;
+    padding: 16px 12px;
+  }
+
+  .staff-panel-heading h2,
+  .staff-completed-panel h2 {
+    font-size: 20px;
+  }
+
+  .staff-title-bar {
+    min-height: 78px;
+    margin: 10px 12px;
+    padding: 14px 16px;
+  }
+
+  .staff-title-bar h1 {
+    font-size: 26px;
+  }
+
+  .staff-title-bar .search-box {
+    width: min(58%, 230px);
+    height: 40px;
+    padding: 0 10px;
+  }
+
+  .staff-appointments-panel {
+    min-height: 350px;
+    margin: 10px 12px 20px;
+    padding: 14px 12px;
+  }
+
+  .staff-appointments-heading {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .staff-appointments-heading h2 {
+    font-size: 21px;
+  }
+
+  .staff-sort-label {
+    align-self: flex-end;
+    padding: 0 4px 8px;
+  }
+
+  .staff-payment-title {
+    justify-content: flex-start;
+  }
+
+  .staff-payment-layout {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 0 12px 16px;
+  }
+
+  .staff-payment-customer-list {
+    gap: 10px;
+  }
+
+  .staff-payment-customer {
+    min-height: 76px;
+    padding: 12px 16px;
+    border-radius: 14px;
+  }
+
+  .staff-payment-card {
+    min-height: 0;
+    padding: 20px 14px 16px;
+  }
+
+  .staff-method-options {
+    gap: 12px;
+    margin: 0 3%;
+  }
+
+  .staff-cash-row {
+    grid-template-columns: minmax(0, 1fr) 82px;
+    gap: 10px;
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+
+  .staff-transaction-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 12px 14px;
+  }
+
+  .staff-transaction-stats article {
+    min-height: 82px;
+  }
+
+  .staff-transactions-panel {
+    margin: 0 12px 16px;
+    padding: 14px 10px;
+  }
+
+  .staff-transaction-filters {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .staff-transaction-filters select {
+    padding: 0 6px;
+    font-size: 12px;
   }
 }

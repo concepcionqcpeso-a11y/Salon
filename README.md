@@ -1,13 +1,14 @@
-# Hearth & Halo Salon Portal
+# CLIQUE Salon and Spa
 
-A frontend-only React and Tailwind CSS salon customer portal.
+A frontend-only React salon management portal.
 
 ## Features
 
-- Login form with basic client-side validation
-- Customer dashboard with appointments and care notes
+- Photo-led login with Admin and Staff account selection
+- Admin dashboard for salon operations, settings, and reports
+- Staff workspace with a focused appointment schedule
 - Responsive layout for desktop and mobile
-- Local-only demo state; no backend or real authentication yet
+- Local-only demo state; authentication and data are not backed by a server
 
 ## Run locally
 
@@ -18,6 +19,6 @@ npm run dev
 
 Then open `http://localhost:5173/`.
 
-## Demo login
+## Demo sign-in
 
-Use any email or username and a password with at least 6 characters.
+Choose Admin or Staff, then enter any non-empty username and password.
