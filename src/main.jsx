@@ -1,4 +1,4 @@
-﻿import { StrictMode, useState } from 'react'
+﻿import { StrictMode, useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
   Bell,
@@ -102,16 +102,18 @@ const staffNavItems = [
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [role, setRole] = useState('admin')
   const [error, setError] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (!username.trim() || !password.trim()) {
+    const trimmedUsername = username.trim()
+
+    if (!trimmedUsername || !password.trim()) {
       setError('Enter a username and password to continue.')
       return
     }
-    onLogin(username.trim(), role)
+
+    onLogin(trimmedUsername)
   }
 
   return (
@@ -127,14 +129,6 @@ function LoginPage({ onLogin }) {
           alt="A client enjoying a salon appointment"
         />
         <form className="login-form" onSubmit={handleSubmit}>
-          <div className="login-role-picker" role="group" aria-label="Choose account type">
-            <button type="button" className={role === 'admin' ? 'selected' : ''} aria-pressed={role === 'admin'} onClick={() => setRole('admin')}>
-              <ShieldCheck size={17} /> Admin
-            </button>
-            <button type="button" className={role === 'staff' ? 'selected' : ''} aria-pressed={role === 'staff'} onClick={() => setRole('staff')}>
-              <UserRound size={17} /> Staff
-            </button>
-          </div>
           <label><span>Username</span><input autoComplete="username" value={username} onChange={(event) => setUsername(event.target.value)} placeholder="Username" /></label>
           <label><span>Password</span><input autoComplete="current-password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Password" /></label>
           <button type="button" className="forgot-password" onClick={() => setError('Please contact your salon administrator to reset your password.')}>Forgot your password?</button>
@@ -161,14 +155,29 @@ function App() {
   const [role, setRole] = useState('admin')
   const [activePage, setActivePage] = useState('dashboard')
   const [staffTransactions, setStaffTransactions] = useState(initialStaffTransactions)
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
+  const sidebarRef = useRef(null)
 
-  if (!isLoggedIn) return <LoginPage onLogin={(name, selectedRole) => { setIdentity(name); setRole(selectedRole); setIsLoggedIn(true) }} />
+  useEffect(() => {
+    const handlePointerDown = (event) => {
+      if (!mobileSidebarOpen) return
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setMobileSidebarOpen(false)
+      }
+    }
+
+    window.addEventListener('pointerdown', handlePointerDown)
+    return () => window.removeEventListener('pointerdown', handlePointerDown)
+  }, [mobileSidebarOpen])
+
+  if (!isLoggedIn) return <LoginPage onLogin={(name) => { const nextRole = name.toLowerCase() === 'admin' ? 'admin' : 'staff'; setIdentity(name); setRole(nextRole); setIsLoggedIn(true) }} />
 
   const handleLogout = () => {
     setIdentity('')
     setRole('admin')
     setIsLoggedIn(false)
     setActivePage('dashboard')
+    setMobileSidebarOpen(false)
   }
 
   const renderPage = () => {
@@ -188,7 +197,21 @@ function App() {
 
   return (
     <div className={`admin-app-shell ${role === 'staff' ? 'staff-app-shell' : ''}`}>
-      <aside className="sidebar">
+      <button
+        type="button"
+        className="mobile-menu-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded={mobileSidebarOpen}
+        onClick={() => setMobileSidebarOpen((current) => !current)}
+      >
+        <span className="mobile-menu-icon" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </span>
+      </button>
+
+      <aside ref={sidebarRef} className={`sidebar ${mobileSidebarOpen ? 'mobile-open' : ''}`}>
         <div className="brand-box">
           <div className="brand-logo-circle"><span>CLIQUE</span></div>
           <div className="brand-meta">
@@ -197,29 +220,37 @@ function App() {
           </div>
         </div>
 
-        <nav className="nav-list">
-          {(role === 'admin' ? navItems : staffNavItems).map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              type="button"
-              className={`nav-item ${activePage === id ? 'active' : ''}`}
-              onClick={() => setActivePage(id)}
-            >
-              <span className="nav-icon"><Icon size={20} /></span>
-              <span className="nav-label">{label}</span>
-            </button>
-          ))}
-        </nav>
+        <div className="mobile-sidebar-content">
+          <nav className="nav-list">
+            {(role === 'admin' ? navItems : staffNavItems).map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                type="button"
+                className={`nav-item ${activePage === id ? 'active' : ''}`}
+                onClick={() => {
+                  setActivePage(id)
+                  setMobileSidebarOpen(false)
+                }}
+              >
+                <span className="nav-icon"><Icon size={20} /></span>
+                <span className="nav-label">{label}</span>
+              </button>
+            ))}
+          </nav>
 
-        <div className="sidebar-footer">
-          <button type="button" className="footer-item" onClick={() => setActivePage('system')}>
-            <UserRound size={18} />
-            <span>Account ({role})</span>
-          </button>
-          <button type="button" className="footer-item" onClick={handleLogout}>
-            <LogOut size={18} />
-            <span>Log Out</span>
-          </button>
+          <div className="sidebar-footer">
+            <button type="button" className="footer-item" onClick={() => {
+              setActivePage('system')
+              setMobileSidebarOpen(false)
+            }}>
+              <UserRound size={18} />
+              <span>Account ({role})</span>
+            </button>
+            <button type="button" className="footer-item" onClick={handleLogout}>
+              <LogOut size={18} />
+              <span>Log Out</span>
+            </button>
+          </div>
         </div>
       </aside>
 
