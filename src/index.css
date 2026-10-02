@@ -317,23 +317,6 @@ input:focus-visible {
   padding-top: 14px;
 }
 
-@media (min-width: 901px) {
-  .admin-app-shell > .sidebar {
-    min-height: 100vh;
-    height: 100vh;
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
-  }
-
-  .admin-app-shell > .sidebar .mobile-sidebar-content {
-    display: flex;
-    flex: 1;
-    min-height: 0;
-    flex-direction: column;
-  }
-}
-
 .footer-item {
   border: 0;
   background: transparent;
@@ -1028,7 +1011,7 @@ input:focus-visible {
   font-weight: 700;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .admin-app-shell {
     flex-direction: column;
   }
@@ -1197,7 +1180,6 @@ input:focus-visible {
     box-shadow: 8px 0 28px rgba(0, 0, 0, 0.28);
     padding: 14px 10px 12px;
     background: rgba(18, 18, 18, 0.97);
-    pointer-events: auto;
   }
 
   .admin-app-shell > .sidebar.mobile-open,
@@ -1222,8 +1204,6 @@ input:focus-visible {
 
   .admin-app-shell > .sidebar .nav-item,
   .staff-app-shell > .sidebar .nav-item {
-    position: relative;
-    z-index: 31;
     padding: 10px 12px;
     border-radius: 10px;
     font-size: 13px;
@@ -1232,8 +1212,6 @@ input:focus-visible {
     align-items: center;
     gap: 10px;
     text-align: left;
-    pointer-events: auto;
-    touch-action: manipulation;
   }
 
   .admin-app-shell > .sidebar .sidebar-footer,
@@ -1241,6 +1219,7 @@ input:focus-visible {
     position: absolute;
     left: 10px;
     right: 10px;
+    top: auto;
     bottom: 12px;
     display: flex;
     flex-direction: column;
@@ -1254,16 +1233,12 @@ input:focus-visible {
 
   .admin-app-shell > .sidebar .footer-item,
   .staff-app-shell > .sidebar .footer-item {
-    position: relative;
-    z-index: 31;
     font-size: 13px;
     padding: 10px 12px;
     border-radius: 10px;
     width: 100%;
     justify-content: flex-start;
     align-self: flex-start;
-    pointer-events: auto;
-    touch-action: manipulation;
   }
 
   .admin-app-shell > .sidebar .footer-item:last-child,
@@ -1334,23 +1309,23 @@ input:focus-visible {
   }
 
   .login-card-heading {
-    min-height: 118px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    min-height: 124px;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 
   .login-photo {
-    height: 110px;
+    height: 122px;
   }
 
   .login-form {
     gap: 8px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 
   .login-form input {
-    height: 46px;
+    height: 48px;
   }
 }
 
@@ -1365,14 +1340,6 @@ input:focus-visible {
   min-height: 100vh;
   padding: 24px 0 18px;
   border-right: 1px solid #373737;
-  margin-left: 0;
-}
-
-.staff-app-shell > .sidebar .mobile-sidebar-content {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-  flex-direction: column;
 }
 
 .staff-app-shell .brand-box {
@@ -1428,8 +1395,8 @@ input:focus-visible {
 
 .staff-app-shell .sidebar-footer {
   gap: 0;
-  padding: 22px 10px 0;
-  margin: auto 0 0;
+  padding: 22px 34px 0;
+  margin: auto 16px 28px;
   border-top: 1px solid #3a3a3a;
 }
 
@@ -2144,7 +2111,7 @@ input:focus-visible {
   line-height: 1;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .staff-app-shell {
     flex-direction: column;
   }
@@ -2193,6 +2160,10 @@ input:focus-visible {
 }
 
 @media (max-width: 720px) {
+  .admin-app-shell > .sidebar {
+    width: 100%;
+  }
+
   .staff-app-shell > .sidebar {
     padding: 10px 10px 8px;
   }
@@ -2378,12 +2349,34 @@ input:focus-visible {
   }
 
   .staff-transaction-filters {
-    grid-template-columns: 100px minmax(0, 1fr);
+    grid-template-columns: minmax(68px, 0.42fr) minmax(0, 1fr);
     gap: 8px;
     margin-bottom: 14px;
   }
 
+  .staff-transaction-filters .search-box {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    gap: 4px;
+    margin-top: 0;
+    padding: 0 8px;
+  }
+
+  .staff-transaction-filters .search-box > svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 auto;
+  }
+
+  .staff-transaction-filters .search-box input {
+    min-width: 0;
+    font-size: 10px;
+  }
+
   .staff-transaction-filters select {
+    width: 100%;
+    min-width: 0;
     padding: 0 6px;
     font-size: 12px;
   }
