@@ -317,6 +317,13 @@ input:focus-visible {
   padding-top: 14px;
 }
 
+.mobile-sidebar-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .footer-item {
   border: 0;
   background: transparent;
@@ -2141,12 +2148,12 @@ input:focus-visible {
   }
 
   .staff-app-shell .sidebar-footer {
-    position: absolute;
-    top: 13px;
-    right: 22px;
-    display: block;
+    position: static;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
     padding: 0;
-    margin: 0;
+    margin: 8px 0 0;
     border: 0;
   }
 
@@ -2224,23 +2231,44 @@ input:focus-visible {
   }
 
   .staff-dashboard-stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
     padding: 4px 10px 0;
   }
 
   .staff-metric-card {
-    min-height: 130px;
-    padding: 18px 24px;
+    min-width: 0;
+    min-height: 150px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 10px 20px;
+    text-align: center;
+  }
+
+  .staff-metric-card > svg {
+    width: 28px;
+    height: 28px;
   }
 
   .staff-metric-card h2 {
-    font-size: 17px;
+    font-size: 14px;
     white-space: normal;
   }
 
   .staff-metric-card strong {
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  .staff-metric-card p {
+    font-size: 11px;
+  }
+
+  .staff-progress {
+    right: 12px;
+    bottom: 10px;
+    left: 12px;
+    height: 6px;
   }
 
   .staff-dashboard-panels {
@@ -2334,13 +2362,35 @@ input:focus-visible {
   }
 
   .staff-transaction-stats {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
     padding: 0 12px 14px;
   }
 
   .staff-transaction-stats article {
-    min-height: 82px;
+    min-width: 0;
+    min-height: 90px;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 4px;
+  }
+
+  .staff-transaction-stats article > svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .staff-transaction-stats h2 {
+    margin-bottom: 1px;
+    font-size: 10px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .staff-transaction-stats strong {
+    font-size: 18px;
+    line-height: 1.1;
+    white-space: nowrap;
   }
 
   .staff-transactions-panel {
